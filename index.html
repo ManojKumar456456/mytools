@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolBox Pro - Your All-in-One Online Tools for PDF, Image & More</title>
+    <meta name="description" content="Access free online tools for PDF editing, image manipulation, document conversion, and more. Simplify your tasks with our intuitive and powerful web-based utilities.">
+    <meta name="keywords" content="PDF tools, image tools, online converter, PDF editor, image resizer, document management, free tools, web tools">
+    <meta name="author" content="ToolBox Pro Team">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-50 text-gray-800;
+        }
+        /* Custom styles for dropdown to ensure it's visible on smaller screens if needed */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .hidden-mobile {
+            display: none;
+        }
+        .show-mobile {
+            display: block;
+        }
+        @media (min-width: 768px) { /* md breakpoint for Tailwind */
+            .hidden-mobile {
+                display: block;
+            }
+            .show-mobile {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 shadow-lg py-4 px-6 md:px-8">
+        <nav class="container mx-auto flex items-center justify-between flex-wrap">
+            <!-- Logo/Site Title -->
+            <a href="#" class="flex items-center flex-shrink-0 text-white mr-6">
+                <svg class="h-8 w-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H3a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H3a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011-1V4z"></path>
+                </svg>
+                <span class="font-bold text-xl tracking-tight">ToolBox Pro</span>
+            </a>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="block md:hidden">
+                <button id="menu-toggle" class="flex items-center px-3 py-2 border rounded text-blue-200 border-blue-400 hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </button>
+            </div>
+
+            <!-- Menu Items (visible on desktop, toggled on mobile) -->
+            <div id="nav-menu" class="w-full block flex-grow md:flex md:items-center md:w-auto hidden">
+                <div class="text-sm md:flex-grow">
+                    <a href="#" class="block mt-4 md:inline-block md:mt-0 text-blue-100 hover:text-white mr-4 p-2 rounded-md hover:bg-blue-700 transition duration-200 ease-in-out">
+                        Home
+                    </a>
+                    <a href="#image-tools" class="block mt-4 md:inline-block md:mt-0 text-blue-100 hover:text-white mr-4 p-2 rounded-md hover:bg-blue-700 transition duration-200 ease-in-out">
+                        Edit Images
+                    </a>
+                    <a href="#pdf-tools" class="block mt-4 md:inline-block md:mt-0 text-blue-100 hover:text-white mr-4 p-2 rounded-md hover:bg-blue-700 transition duration-200 ease-in-out">
+                        Edit PDF
+                    </a>
+                    <!-- All Tools Dropdown -->
+                    <div class="relative inline-block text-left dropdown">
+                        <button class="block mt-4 md:inline-block md:mt-0 text-blue-100 hover:text-white p-2 rounded-md hover:bg-blue-700 transition duration-200 ease-in-out inline-flex items-center">
+                            All Tools
+                            <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </button>
+                        <div class="dropdown-menu absolute hidden text-gray-700 pt-1 z-50">
+                            <a class="rounded-t bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap text-sm" href="#pdf-tools">PDF Tools</a>
+                            <a class="bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap text-sm" href="#image-tools">Image Tools</a>
+                            <a class="rounded-b bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap text-sm" href="#other-tools">Other Tools</a>
+                            <!-- Add more links here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <section class="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-20 px-6 text-center shadow-inner rounded-b-lg">
+            <div class="container mx-auto max-w-4xl">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
+                    Your Ultimate Online ToolBox
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl mb-8 opacity-90">
+                    Simplify your tasks with our free, powerful, and easy-to-use web tools for PDF, Images, and more.
+                </p>
+                <a href="#tools-categories" class="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-100 transform hover:scale-105 transition duration-300 ease-in-out">
+                    Explore All Tools
+                </a>
+            </div>
+        </section>
+
+        <!-- Tools Categories Section -->
+        <section id="tools-categories" class="py-16 px-6 bg-gray-50">
+            <div class="container mx-auto">
+
+                <!-- PDF Tools Section -->
+                <h2 id="pdf-tools" class="text-3xl sm:text-4xl font-bold text-center mb-8 text-gray-800">PDF Tools</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+
+                    <!-- PDF Merge Card -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-red-100 text-red-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2m-6 0h6m-6 0h-1M9 16l4 4m-4-4l-4 4m9-4h3a2 2 0 002-2V7a2 2 0 00-2-2h-3a2 2 0 00-2 2v2a2 2 0 002 2m0 0H9m1.5-2H17"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">PDF Merge</h3>
+                        <p class="text-gray-600 text-sm">Combine multiple PDF files into one single document effortlessly.</p>
+                    </a>
+
+                    <!-- PDF Split Card -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-green-100 text-green-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 13l-4 4m0 0l-4-4m4 4V7"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">PDF Split</h3>
+                        <p class="text-gray-600 text-sm">Divide large PDF documents into smaller, manageable files quickly.</p>
+                    </a>
+
+                    <!-- PDF to Word Card -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-blue-100 text-blue-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">PDF to Word</h3>
+                        <p class="text-gray-600 text-sm">Convert your PDF files into editable Word documents with high accuracy.</p>
+                    </a>
+
+                    <!-- PDF Coming Soon Card -->
+                    <div class="bg-gray-200 rounded-xl shadow-inner p-6 flex flex-col items-center text-center justify-center border-2 border-dashed border-gray-300">
+                        <div class="p-4 bg-gray-300 text-gray-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m0 0H6"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">More PDF Tools Soon...</h3>
+                        <p class="text-gray-500 text-sm">Exciting new PDF tools are under development!</p>
+                    </div>
+
+                </div>
+
+                <!-- Image Tools Section -->
+                <h2 id="image-tools" class="text-3xl sm:text-4xl font-bold text-center mb-8 text-gray-800">Image Tools</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+
+                    <!-- Image Compressor Card -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-yellow-100 text-yellow-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h14a2 2 0 012 2v12a4 4 0 01-4 4h-3M5 7h14m-9 4h-2M9 17v-4m3 4h2m-3 4H9"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Image Compressor</h3>
+                        <p class="text-gray-600 text-sm">Reduce image file size without compromising on visual quality.</p>
+                    </a>
+
+                    <!-- Image to PDF Card -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-purple-100 text-purple-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Image to PDF</h3>
+                        <p class="text-gray-600 text-sm">Convert your images (JPG, PNG, etc.) into professional PDF documents.</p>
+                    </a>
+
+                    <!-- Crop Image Card -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-indigo-100 text-indigo-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-.758l-.293.293m3.182 3.182l-.293.293m-4.646-4.646L13.828 10.172m-1.556 1.556l1.414-1.414m-1.1-1.1l1.414-1.414m2.121-2.121l1.414-1.414m-.758-.758l.293.293m-3.182-3.182l.293-.293m-4.646 4.646l4.646-4.646"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Crop Image</h3>
+                        <p class="text-gray-600 text-sm">Precisely crop your images to remove unwanted areas or adjust composition.</p>
+                    </a>
+
+                    <!-- Watermark Image Card -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-pink-100 text-pink-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Watermark Image</h3>
+                        <p class="text-gray-600 text-sm">Add custom text or image watermarks to protect your photos.</p>
+                    </a>
+
+                    <!-- Image Coming Soon Card -->
+                    <div class="bg-gray-200 rounded-xl shadow-inner p-6 flex flex-col items-center text-center justify-center border-2 border-dashed border-gray-300">
+                        <div class="p-4 bg-gray-300 text-gray-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m0 0H6"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">More Image Tools Soon...</h3>
+                        <p class="text-gray-500 text-sm">Exciting new image tools are under development!</p>
+                    </div>
+
+                </div>
+
+                <!-- Other Tools Section -->
+                <h2 id="other-tools" class="text-3xl sm:text-4xl font-bold text-center mb-8 text-gray-800">Other Tools</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+
+                    <!-- Placeholder for Other Tool 1 -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-green-100 text-green-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Text Counter</h3>
+                        <p class="text-gray-600 text-sm">Count words, characters, and sentences in your text instantly.</p>
+                    </a>
+
+                    <!-- Placeholder for Other Tool 2 -->
+                    <a href="#" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 ease-in-out p-6 flex flex-col items-center text-center">
+                        <div class="p-4 bg-blue-100 text-blue-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Code Formatter</h3>
+                        <p class="text-gray-600 text-sm">Format your code for better readability and consistency.</p>
+                    </a>
+
+                    <!-- Other Tools Coming Soon Card -->
+                    <div class="bg-gray-200 rounded-xl shadow-inner p-6 flex flex-col items-center text-center justify-center border-2 border-dashed border-gray-300">
+                        <div class="p-4 bg-gray-300 text-gray-600 rounded-full mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m0 0H6"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">More Other Tools Soon...</h3>
+                        <p class="text-gray-500 text-sm">Exciting new general utility tools are under development!</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Subscribe Section -->
+    <section class="bg-gradient-to-r from-gray-700 to-gray-900 text-white py-12 px-6">
+        <div class="container mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay Updated!</h2>
+            <p class="text-lg mb-6">Subscribe to our newsletter to get notified about new tools and updates.</p>
+            <form class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <input type="email" placeholder="Enter your email address" class="w-full sm:w-2/3 p-3 rounded-md border border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-10 px-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <!-- Logo and Name -->
+            <div class="flex flex-col items-center md:items-start mb-6 md:mb-0">
+                <a href="#" class="flex items-center text-white mb-2">
+                    <svg class="h-8 w-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H3a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H3a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011-1V4z"></path>
+                    </svg>
+                    <span class="font-bold text-xl tracking-tight">ToolBox Pro</span>
+                </a>
+                <p class="text-sm">Your reliable source for online tools.</p>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="mb-6 md:mb-0">
+                <h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22C17.34 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12.44 20.93V14.1h2.24l.35-2.61h-2.59v-1.65c0-.72.2-1.22 1.24-1.22H15V7.75c-.24 0-.96-.06-1.7-.06-1.67 0-2.82 1.02-2.82 2.9v1.8h-1.8v2.61h1.8v6.83h-.01c-4.99-.44-8.8-4.73-8.8-9.83C3.59 6.49 7.42 2.24 12.33 2.24c4.91 0 8.8 4.25 8.8 9.53 0 4.9-3.66 9.07-8.79 9.16l-.01.01z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M8.29 20.31a9.23 9.23 0 01-5.1-1.5 6.47 6.47 0 00-.5.1 6.55 6.55 0 003.88-1.07 3.27 3.27 0 01-3.04-2.27 3.32 3.32 0 00.5-.05 3.4 3.4 0 00.86-.11 3.28 3.28 0 01-2.63-3.23c0-.02 0-.04 0-.06a3.24 3.24 0 001.49.41 3.28 3.28 0 01-1.03-4.39 9.35 9.35 0 006.77 3.44 3.27 3.27 0 015.57-2.99 6.57 6.57 0 002.1-.8 3.33 3.33 0 01-1.44 1.8 6.55 6.55 0 001.9-.53 6.64 6.64 0 01-1.65 1.5c0 .03 0 .05 0 .08.01.2.02.4.02.61C20.31 16.51 17.5 20.31 8.29 20.31z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Navigation Links -->
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-200 text-sm">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-200 text-sm">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-200 text-sm">Terms of Use</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-200 text-sm">Cookies Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-200 text-sm">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+            <p>&copy; 2023 ToolBox Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and Dropdown -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            // Mobile Menu Toggle
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('hidden');
+            });
+
+            // Dropdown Toggle for "All Tools"
+            // For desktop, hover works due to CSS. For mobile/touch, we need click.
+            dropdown.addEventListener('click', function(event) {
+                // Prevent menu from closing if clicking inside
+                if (window.innerWidth < 768) { // Only toggle on click for smaller screens
+                    dropdownMenu.classList.toggle('hidden');
+                    event.stopPropagation(); // Prevent document click from closing immediately
+                }
+            });
+
+            // Close dropdown if clicking outside
+            document.addEventListener('click', function(event) {
+                if (!dropdown.contains(event.target) && !dropdownMenu.classList.contains('hidden')) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+
+            // Adjust menu visibility on resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    navMenu.classList.remove('hidden');
+                    dropdownMenu.classList.add('hidden'); // Ensure dropdown is hidden on desktop when not hovered
+                } else {
+                    navMenu.classList.add('hidden'); // Hide mobile menu by default on resize down
+                }
+            });
+        });
+    </script>
+</body>
+</html>
